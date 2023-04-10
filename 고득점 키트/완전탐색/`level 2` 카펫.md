@@ -15,3 +15,56 @@ Leo가 본 카펫에서 갈색 격자의 수 brown, 노란색 격자의 수 yell
 
 ## 입출력 예
 ![image](https://user-images.githubusercontent.com/122213470/230835040-16982f61-627d-404b-b057-5888ca438bf7.png)
+
+## 유경's Solution
+- 제일 빠름!!
+- `for`문 안에 `if`문 있으면 `break` 쓰는게 훨씬 빠름!!
+
+```python
+def solution(brown, yellow):
+    answer = [3,3]  #yellow=1 이면 [3,3]만 돼서
+    for i in range(1, yellow//2+1):
+        if yellow % i == 0:
+            b_width = max(yellow//i, i) + 2
+            b_height = min(yellow//i, i) + 2
+            if b_width*b_height == (brown+yellow):
+                answer = [b_width, b_height]
+                break
+
+    return answer
+```
+
+## 주영's Solution
+
+```python
+def solution(brown, yellow):
+    yellows = [x for x in range(1, yellow+1) if yellow % x == 0]
+    new = [x+2 for x in yellows] 
+    
+    for i in new:
+        for j in new:
+            if i * j == brown + yellow:
+                return [j, i]
+```
+
+## 서연's Solution
+
+```python
+def solution(brown, yellow):
+    # yellow의 개수 24 : 1*24, 2*12,.... 가능 -> 모든 약수 조합 구하기
+    # 가로 세로는 yellow가로+2, yellow세로+2
+    # brown+ yellow는 yellow가로+2, yellow세로+2와 같음
+    num1 = [x for x in range(1,yellow+1) if yellow%x==0] # 1,2,3
+    num2 = [yellow/x for x in num1] # 24, 12, 8
+    for i in range(len(num1)):
+        a = num1[i]+2
+        b = num2[i]+2
+        if brown + yellow == a*b:
+            return [b, a]
+```
+
+
+## Useful Concepts
+
+- `continue`: 다음 순번으로 넘어가라
+- `pass`: 뒤의 것도 수행함, 에러가 나오더라도 그냥 넘겨버림

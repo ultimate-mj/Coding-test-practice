@@ -17,4 +17,14 @@ XX게임에는 피로도 시스템(0 이상의 정수로 표현합니다)이 있
 ## 입출력 예
 ![image](https://user-images.githubusercontent.com/122213470/230840491-fd130470-e559-4829-873c-58b07817d1ee.png)
 
+## 주영's Solution
 
+
+## 서연's Solution
+
+
+## 유경's Solution
+
+
+## Useful Concepts
+- `permutations`의 default = 전체 길이

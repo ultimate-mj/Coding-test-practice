@@ -55,13 +55,14 @@ def solution(numbers):
 ## 서연's Solution
 
 - 서연's temp == 주영's is_prime
+- 굳이 `num = [x for x in numbers]` 이렇게 할 필요가 없었음..! 문자열도 iterative 하기 때문
 
 ```python
 from itertools import permutations
 def solution(numbers):
     answer = 0
     # 문자열을 분리해서 리스트로 저장
-    num = [x for x in numbers]
+    num = [x for x in numbers]   
     # 순열로 모든 조합 생성
     L = [] # 모든 조합 담을 리스트
     for i in range(len(numbers)): # 1개부터 numbers 자릿수까지의 수를 생성 

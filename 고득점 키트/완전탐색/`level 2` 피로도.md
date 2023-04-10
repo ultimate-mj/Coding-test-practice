@@ -19,9 +19,50 @@ XX게임에는 피로도 시스템(0 이상의 정수로 표현합니다)이 있
 
 ## 주영's Solution
 
+```python
+from itertools import permutations   # 모든 순서를 찾는 문제
+
+def solution(k, dungeons):
+    result = []
+    for p in permutations(dungeons, len(dungeons)):   # default는 전체 길이므로 len(dungeons) 빼도 됨
+        # ([80, 20], [50, 40], [30, 10])
+        cur = k   # 80 -> 60 -> 20
+        cnt = 0   # 0 -> 1 -> 2
+        
+        
+        for need, spend in p:
+            if cur >= need:   # 20 < 30
+                cur -= spend   # 60 -> 20
+                cnt += 1   # 0 -> 1 -> 2
+        result.append(cnt)
+        
+    return max(result)
+```
 
 ## 서연's Solution
 
+```python
+from itertools import permutations
+def solution(k, dungeons):
+    answer = 0
+    # 던전 경우의 수 생성 - 순열
+    d = permutations(dungeons) # 디폴트가 전체 길이
+    # 각 경우의수 별로
+    # 현재 피로도 > 최소 피로도 이면,
+    # 현재 - 소모
+    # 탐험 던전 수 += 1
+    for i in d: # 던전 탐험 경우의 수 i
+        k_temp = k  # 각 경우의 수, 시작 피로도 리셋
+        cnt = 0     # 각 경우의 수, 탐험 던전 수
+        for need, loss in i: # 최소 피로도, 소모 피로도
+            if k_temp >= need:
+                k_temp -= loss
+                cnt += 1
+            else:
+                break
+        answer = max(answer, cnt)
+    return answer
+```
 
 ## 유경's Solution
 

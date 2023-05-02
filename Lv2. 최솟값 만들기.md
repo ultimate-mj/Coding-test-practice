@@ -23,5 +23,18 @@
 
 ## My Solution
 
+Idea:
+
+가장 작은 곱의 합을 만드려면 A의 앞쪽부터 & B는 뒤쪽부터 선택하기
+
+```python
+def solution(A,B):
+    A.sort()
+    B.sort()
+    answer = 0
+    for i in range(len(A)):
+        answer += A[i]*B[-(i+1)]
+    return answer
+```
 
 

@@ -42,3 +42,31 @@ def solution(s):
     answer = ' '.join(lists)
     return answer
 ```
+
+## My Solution 3.
+
+- use `.capitalize()` !!
+
+```python
+def solution(s):
+    temp = s.split(' ')
+    lists =[]
+    for i in range(len(temp)):
+        lists.append(temp[i].capitalize())
+    answer = ' '.join(lists)
+    return answer
+```
+
+## Useful concept
+
+1. `.upper()` : 모든 알파벳을 대문자로
+2. `.capitalize()` : 맨 첫 글자만 대문자로
+3. `.title()` : 알파벳 외의 문자로 나누어져 있는 영단어들의 첫 글자를 모두 대문자로
+
+
+
+
+
+
+
+

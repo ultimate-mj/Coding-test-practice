@@ -38,3 +38,14 @@ def solution(A,B):
 ```
 
 
+## Other's Solution
+
+Idea:
+- use `sorted(B, reverse=True)`
+- use zip
+
+```python
+def getMinSum(A, B):
+    return sum([a * b for a, b in zip(sorted(A), sorted(B, reverse=True))])
+```
+

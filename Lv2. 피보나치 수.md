@@ -20,7 +20,7 @@ n은 2 이상 100,000 이하인 자연수입니다.
 ## 입출력 예
 ![image](https://user-images.githubusercontent.com/122213470/236729598-f9d733f6-86f3-432e-a1af-0129622b52a4.png)
 
-## My Solution. Runtime error
+## My Solution 1. Runtime error
 
 Idea:
 - Use Recursion 재귀함수 사용!
@@ -33,3 +33,5 @@ def solution(n):
         return solution(n-1) + solution(n-2)
 ```
 
+피보나치 수 연습 힌트 모음: (비슷한 에러가 뜨는 실수를 많이들 하는 듯하다)
+https://school.programmers.co.kr/learn/courses/14743/14743-%EC%BD%94%EB%94%A9%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%97%B0%EC%8A%B5-%ED%9E%8C%ED%8A%B8-%EB%AA%A8%EC%9D%8C%EC%A7%91?itm_content=lesson12945

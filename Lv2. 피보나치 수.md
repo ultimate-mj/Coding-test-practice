@@ -72,5 +72,3 @@ def solution(n):
         a.append((a[i-2]+a[i-1])% 1234567)
     return a[n]
 ```
-
-## Other's Solution.

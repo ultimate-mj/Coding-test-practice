@@ -37,7 +37,13 @@ def solution(n):
 https://school.programmers.co.kr/learn/courses/14743/14743-%EC%BD%94%EB%94%A9%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%97%B0%EC%8A%B5-%ED%9E%8C%ED%8A%B8-%EB%AA%A8%EC%9D%8C%EC%A7%91?itm_content=lesson12945
 
 Note:
-- 재귀 호출을 하면 `n`이 50 이상일 때 시간 초과나 런타임 에러가 난다
+- **재귀 호출을 하면 `n`이 50 이상일 때 시간 초과나 런타임 에러**가 난다
 
 -> Solution: `for`문 사용하기! **(동적계획법)**
+
+## My Solution 2. 
+
+```python
+
+```
 

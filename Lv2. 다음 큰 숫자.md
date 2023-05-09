@@ -16,3 +16,23 @@
 
 ## 입출력 예
 ![image](https://user-images.githubusercontent.com/122213470/236728564-8b0cce7d-9574-4503-bc3b-ab2c9ea8915a.png)
+
+## My Solution.
+Idea: `이진 변환 반복하기` 참고하여
+- `bin` 사용
+- `count` 사용
+
+```python
+def solution(n):
+    one = bin(n)[2:].count('1')
+    ans = n + 1
+    while bin(ans)[2:].count('1') != one:
+        ans += 1
+    return ans
+```
+
+## Useful Concept
+1. `.count( )`
+- () 안의 개수를 찾는 것
+- () 안에는 `string` 형태로 넣어주어야 함!
+- 따라서 `a.count('0')`일 때, `a`도 `string`이어야 한다!

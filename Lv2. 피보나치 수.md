@@ -41,9 +41,36 @@ Note:
 
 -> Solution: `for`문 사용하기! **(동적계획법)**
 
-## My Solution 2. 
+## My Solution 2. Runtime error
+
+- `for`문을 사용했는데도 런타임 에러가 뜸
 
 ```python
-
+def solution(n):
+    if n >= 2:
+        a = 0
+        b = 1
+        for i in range(n-1):
+            c = a + b
+            a = b
+            b = c
+    else: 
+        return n
+    return c
 ```
 
+## My Solution 3.
+
+Idea:
+- Use `list`
+- Use `%1234567` to prevent overflow!
+
+```python
+def solution(n):
+    a = [0, 1]
+    for i in range(2, n+1):
+        a.append((a[i-2]+a[i-1])% 1234567)
+    return a[n]
+```
+
+## Other's Solution.

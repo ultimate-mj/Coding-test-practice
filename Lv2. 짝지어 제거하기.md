@@ -16,3 +16,23 @@ b aa baa → bb aa → aa →
 ## 입출력 예
 ![image](https://github.com/ultimate-mj/Coding-test-practice/assets/122213470/01ca93df-03d3-4b84-b15b-06736e9cc15c)
 
+## My Solution
+
+Idea:
+- use `stack` !!
+
+```python
+stack = []
+for i in s:
+  if not stack:
+    stack.append(i)
+  else:
+    if stack[-1] == i:
+      stack.pop()
+    else:
+      stack.append(i)
+if stack:
+  print(0)
+else:
+  print(1)
+```

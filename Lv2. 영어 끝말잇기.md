@@ -44,5 +44,42 @@ tank → kick → know → wheel → land → dream → mother → robot → tan
 - 2번 사람 : kick, land, robot
 - 3번 사람 : know, dream, tank
 - 
-와 같은 순서로 말을 하게 되며, 3번 사람이 자신의 세 번째 차례에 말한 tank라는 단어가 1번 사람이 자신의 첫 번째 차례에 말한 tank와 같으므로 3번 사람이 자신의 세 번째 차례로 말을 할 때 처음 탈락자가 나오게 됩니다.
+와 같은 순서로 말을 하게 되며, 3번 사람이 자신의 세 번째 차례에 말한 `tank`라는 단어가 1번 사람이 자신의 첫 번째 차례에 말한 `tank`와 같으므로 3번 사람이 자신의 세 번째 차례로 말을 할 때 처음 탈락자가 나오게 됩니다.
 
+### 입출력 예 설명 2
+5명의 사람이 끝말잇기에 참여하고 있습니다.
+
+- 1번 사람 : hello, recognize, gather
+- 2번 사람 : observe, encourage, refer
+- 3번 사람 : effect, ensure, reference
+- 4번 사람 : take, establish, estimate
+- 5번 사람 : either, hang, executive
+
+와 같은 순서로 말을 하게 되며, 이 경우는 주어진 단어로만으로는 탈락자가 발생하지 않습니다. 따라서 [0, 0]을 return하면 됩니다.
+
+### 입출력 예 설명 3
+2명의 사람이 끝말잇기에 참여하고 있습니다.
+
+- 1번 사람 : hello, even, now, draw
+- 2번 사람 : one, never, world
+
+와 같은 순서로 말을 하게 되며, 1번 사람이 자신의 세 번째 차례에 'r'로 시작하는 단어 대신, n으로 시작하는 `now`를 말했기 때문에 이때 처음 탈락자가 나오게 됩니다.
+
+## My Solution
+
+Idea:
+- 총 3가지 경우의 수를 나누어주어야 했음
+- 사람의 번호는 나머지를 구하기 `%`
+- 몇 번째 차례인지는 몫을 구하기 `//`
+
+```python
+def solution(n, words):
+    for i in range(1, len(words)):
+        if words[i][0] != words[i-1][-1]:
+            return [i % n + 1, i // n + 1]
+        elif words[i] in words[:i]:
+            return [i % n + 1, i // n+1]
+        else:
+            continue
+    return [0, 0]
+```

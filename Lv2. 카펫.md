@@ -25,8 +25,18 @@ Idea:
 2. 주어진 정보가 brown, yellow 이므로
   + a+b = brown / 2 + 2 로 구하고
   + a, b 의 모든 짝 중 (a-2) $\times$ (b-2) = yellow 를 만족하는 쌍을 구한다.
-3. 주의: a $\ge$ b
+
+주의: 
+- a $\ge$ b
+- `range` 안에는 `int` 만 들어갈 수 있음
+- `range(a, b)` 는 `a`부터 `b-1`까지라서 마지막에 `+1` 필요
 
 ```python
-
+def solution(brown, yellow):
+    sums = brown / 2 + 2
+    for i in range(1, int(sums//2)+1):
+        b = i
+        a = sums - i
+        if (a-2)*(b-2) == yellow:
+            return [a, b]
 ```

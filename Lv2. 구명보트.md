@@ -18,9 +18,23 @@
 ## 입출력 예
 ![image](https://github.com/ultimate-mj/Coding-test-practice/assets/122213470/7f8f7503-34d1-4d74-8f39-5fc4a1f2c0ef)
 
-## My Solution
+## Solution
 
 Idea:
-1. 작은 사람부터 태우기:
-  + 큰 사람을 태우기
-  + 작은 순서대로 태우기
+1. 가장 큰 사람과 작은 사람을 더해 태우는데, 값이 초과하면 큰 사람부터 태우기
+2. indexing 을 활용하기!! `list`에서 빼게 되면 효율성에서 탈락
+
+```python
+def solution(people, limit):
+    people.sort()
+    count = 0
+    i=0
+    j=len(people)-1
+    while i <= j:
+        count += 1
+        if people[i]+people[j] <= limit:
+            i+=1
+        j -= 1
+    return count
+```
+

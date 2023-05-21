@@ -53,6 +53,8 @@ def solution(k, tangerine):
 
 ## Other's Solution
 
+https://velog.io/@minmong/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4-Lv.2-%EA%B7%A4-%EA%B3%A0%EB%A5%B4%EA%B8%B0-Python-velog
+
 Idea:
 - `for`문 한 번만 돌려서 개수 세기
 

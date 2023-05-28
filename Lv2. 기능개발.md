@@ -30,12 +30,15 @@
 
 따라서 5일째에 1개의 기능, 10일째에 3개의 기능, 20일째에 2개의 기능이 배포됩니다.
 
-## My Solution
+## My Solution 1. $O(n^2)$
 
 Idea:
 - Use stack/que (디렉토리 보고 알았음....)
-- 제일 앞의 것이 100 이상이면 앞에서부터 `pop`하기
 - 리스트 안의 인덱스 별로 덧셈: `progresses = [x+y for x, y in zip(progresses, speeds)]`
+- 제일 앞의 것이 100 이상이면 앞에서부터 `pop`하기
+
+단점:
+- while 안에 while 이라서 복잡도가 $O(n^2)$
 
 ```python
 def solution(progresses, speeds):
@@ -53,4 +56,54 @@ def solution(progresses, speeds):
             ans.append(count)
         progresses = [x+y for x, y in zip(progresses, speeds)]
     return ans
+```
+
+## My Solution 2. 
+
+- Other's Solution 1 을 참고하여 수정
+
+```python
+def solution(progresses, speeds):
+    ans = []
+    progresses = [x+y for x, y in zip(progresses, speeds)]
+    #while progresses:
+    count = 0
+    while progresses:
+        if progresses[0] >= 100:
+            progresses.pop(0)
+            speeds.pop(0)
+            count += 1
+        else:
+            if count != 0:
+                ans.append(count)
+                count = 0
+            progresses = [x+y for x, y in zip(progresses, speeds)]
+    ans.append(count)  # 이 부분 조심!!
+    return ans
+```
+
+## Other's Solution 1
+
+Idea:
+- use 'time' variable
+
+```python
+def solution(progresses, speeds):
+    print(progresses)
+    print(speeds)
+    answer = []
+    time = 0
+    count = 0
+    while len(progresses)> 0:
+        if (progresses[0] + time*speeds[0]) >= 100:
+            progresses.pop(0)
+            speeds.pop(0)
+            count += 1
+        else:
+            if count > 0:
+                answer.append(count)
+                count = 0
+            time += 1
+    answer.append(count)
+    return answer
 ```

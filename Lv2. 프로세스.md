@@ -29,3 +29,21 @@ https://school.programmers.co.kr/learn/courses/30/lessons/42587
 
 ## My Solution.
 
+
+## Other's Solution.
+https://velog.io/@naro-kim/%EC%8A%A4%ED%83%9D%ED%81%90-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%ED%8C%8C%EC%9D%B4%EC%8D%AC
+
+
+```python
+def solution(priorities, location):
+    queue =  [(i,p) for i,p in enumerate(priorities)]
+    answer = 0
+    while True:
+        cur = queue.pop(0)
+        if any(cur[1] < q[1] for q in queue):
+            queue.append(cur)
+        else:
+            answer += 1
+            if cur[0] == location:
+                return answer
+```

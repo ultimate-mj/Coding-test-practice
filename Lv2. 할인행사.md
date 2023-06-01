@@ -24,6 +24,9 @@ Idea:
 - use `.count`
 - use list comprehension
 
+틀린 이유:
+- **회원등록 날짜의 총 일수**를 return 하는 건데 등록하는 첫 번째 날을 return 함
+
 ```python
 def solution(want, number, discount):
     answer = 0
@@ -35,3 +38,18 @@ def solution(want, number, discount):
     return 0
 ```
 
+## My Solution 2. 
+
+- `answer` 세는 방법만 다르게 함
+
+```python
+def solution(want, number, discount):
+    idx = 0
+    answer = 0
+    for i in range(len(discount)-9):
+        count_want = [discount[idx:(idx+10)].count(w) for w in want]
+        if count_want == number:
+            answer += 1
+        idx += 1
+    return answer
+```

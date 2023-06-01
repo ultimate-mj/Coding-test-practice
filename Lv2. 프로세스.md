@@ -31,6 +31,7 @@ https://school.programmers.co.kr/learn/courses/30/lessons/42587
 
 Idea:
 - use `deque`
+  - `
 
 틀린 부분:
 - `max(q)` 에서 각 튜플의 index 별로 큰 것을 찾아주지 않음

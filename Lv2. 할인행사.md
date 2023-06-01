@@ -1,4 +1,4 @@
-# 할인행사
+# `level 2` 할인행사
 
 ## 문제 설명
 XYZ 마트는 일정한 금액을 지불하면 10일 동안 회원 자격을 부여합니다. XYZ 마트에서는 회원을 대상으로 매일 한 가지 제품을 할인하는 행사를 합니다. 할인하는 제품은 하루에 하나씩만 구매할 수 있습니다. 알뜰한 정현이는 자신이 원하는 제품과 수량이 할인하는 날짜와 10일 연속으로 일치할 경우에 맞춰서 회원가입을 하려 합니다.
@@ -18,5 +18,20 @@ XYZ 마트는 일정한 금액을 지불하면 10일 동안 회원 자격을 부
 ## 입출력 예
 ![image](https://github.com/ultimate-mj/Coding-test-practice/assets/122213470/2c834394-0ac1-46c9-844f-a61292d39e42)
 
+## My Solution. 실행 2개 통과 / 테스트 case 1/12 통과
 
+Idea:
+- use `.count`
+- use list comprehension
+
+```python
+def solution(want, number, discount):
+    answer = 0
+    for i in range(len(discount)-9):
+        count_want = [discount[answer:(answer+10)].count(w) for w in want]
+        if count_want == number:
+            return answer + 1
+        answer += 1
+    return 0
+```
 

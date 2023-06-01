@@ -27,7 +27,54 @@ https://school.programmers.co.kr/learn/courses/30/lessons/42587
 ### 입출력 예 설명 2
 6개의 프로세스 [A, B, C, D, E, F]가 대기 큐에 있고 중요도가 [1, 1, 9, 1, 1, 1] 이므로 [C, D, E, F, A, B] 순으로 실행됩니다. 따라서 A는 5번째로 실행됩니다.
 
-## My Solution.
+## My Solution 1. 틀림
+
+Idea:
+- use `deque`
+
+틀린 부분:
+- `max(q)` 에서 각 튜플의 index 별로 큰 것을 찾아주지 않음
+
+```python
+def solution(priorities, location):
+    from collections import deque
+    answer = 0
+    q = [(i, x) for i, x in enumerate(priorities)]  #i 는 location, x는 우선순위임
+    q = deque(q)
+
+    while q:
+        maxim = max(q)[1]
+        a = q.popleft()
+        if a[1] < maxim:
+            q.append(a)
+        else:
+            answer += 1
+            if a[0] == location:
+                return(answer)
+```
+
+## My Solution 2.
+
+Idea:
+- `max` 대신 `any` 사용!
+
+```python
+def solution(priorities, location):
+    from collections import deque
+    answer = 0
+    q = [(i, x) for i, x in enumerate(priorities)]  #i 는 location, x는 우선순위임
+    q = deque(q)
+
+    while q:
+        a = q.popleft()
+        if any(a[1] < p[1] for p in q):
+            q.append(a)
+        else:
+            answer += 1
+            if a[0] == location:
+                return(answer)
+```
+
 
 
 ## Other's Solution.

@@ -1,4 +1,4 @@
-# `level 2` 정수 삼각형
+# `level 3` 정수 삼각형
 
 ## 문제 설명
 
@@ -15,3 +15,33 @@
 ## 입출력 예
 ![image](https://github.com/ultimate-mj/Coding-test-practice/assets/122213470/4770cdc7-facf-4f44-b3b3-e918e03c9f01)
 
+## Solution.
+https://soohyun6879.tistory.com/157
+
+- use `dynamic programming`
+
+```python
+def solution(triangle):
+
+    for i in range(1, len(triangle)): # i = 몇번째 줄인지
+        for j in range(i+1): # j = 줄 안에서 인덱스
+            if j == 0: # 가장 왼쪽인 경우
+                triangle[i][j] += triangle[i-1][j]
+            elif j == i: # 가장 오른쪽인 경우
+                triangle[i][j] += triangle[i-1][-1]
+            else: # 가운데인 경우
+                triangle[i][j] += max(triangle[i-1][j-1], triangle[i-1][j])
+                
+    return max(triangle[-1])
+```
+
+```python
+def solution(triangle):
+    triangle = [[0] + line + [0] for line in triangle]
+    
+    for i in range(1, len(triangle)):
+        for j in range(1, i+2):
+            triangle[i][j] += max(triangle[i-1][j-1], triangle[i-1][j])
+            
+    return max(triangle[-1])
+```

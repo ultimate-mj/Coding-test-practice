@@ -38,23 +38,83 @@
 ## My Solution
 
 알고리즘:
+
 1. 다중집합으로 만들기
 - 모두 소문자/대문자로 통일
-  + use `.upper` or `.lower`
 - 2개씩 묶어서 집합 만들기
-  + 
+  + for문 사용
 - 공백/숫자/특수 문자가 있는 쌍은 버리기
-  + 알파벳인지 확인: `.isalpha()`
-    - 숫자 및 공백이 있으면 False
-  + 숫자인지 확인: `.isdigit()`
-  + 알파벳 또는 숫자인지 확인: `isalnum()`
 
 2. 교집합 구하기
+- `.intersection`으로 교집합 구한 후
+- `Counter`로 각 원소의 개수를 세고
+- 이 중 intersection 으로 구한 교집합의 원소가 각 string에 들어있는 개수의 minimum 이 해당 원소의 교집합의 개수임
+- 원소별 교집합 개수를 구했으므로 이를 모두 더하기
 
 3. 합집합 구하기
 - 모두 합한 후 교집합을 제거
+  + 집합을 따로 구하기보다는 개수로 하기: `전체 개수 - 교집합 개수 = 합집합 개수`
 
 4. 자카드 유사도 구하기
+- union의 개수가 0인 경우 따로 처리
+
+Useful Concepts:
+- `.upper`, `.lower`
+- 알파벳인지 확인: `.isalpha()`
+  + 숫자 및 공백이 있으면 False
+- 숫자인지 확인: `.isdigit()`
+- 알파벳 또는 숫자인지 확인: `isalnum()`
+- `set(str1).intersection(str2)` or `set(str1) & set(str2)
+  + 주의: 교집합/차집합/합집합 구하는 것은 `set`에서만 사용 가능!
+- `from collections import Counter`: 각 원소의 개수 세기
+
+```python
+def solution(str1, str2):
+    #all upper case
+    str1 = str1.upper()
+    str2 = str2.upper()
+
+    #2개씩 묶기
+    str1_c = []
+    for i in range(len(str1)-1):
+        str1_c.append(str1[i:i+2])
+    str2_c = []
+    for i in range(len(str2)-1):
+        str2_c.append(str2[i:i+2])
+        
+    #문자열만 남기기
+    str1_d = []
+    for i in str1_c:
+        if i.isalpha():
+            str1_d.append(i)
+    str2_d = []
+    for i in str2_c:
+        if i.isalpha():
+            str2_d.append(i)
+            
+    #unique 한 교집합 구하기
+    intersect = list(set(str1_d).intersection(str2_d))
+    
+    #전체 교집합 구하기 (중복 포함)
+    from collections import Counter
+    #각 개수를 구하기
+    str1_num = Counter(str1_d)
+    str2_num = Counter(str2_d)
+    #unque한 교집합의 원소가 각 string에서 몇 개 있는지 구하고 그 중 minimum 이 교집합 개수가 됨
+    intersect_num = [min(str1_num[i], str2_num[i]) for i in intersect]
+    intersect_num = sum(intersect_num)
+    
+    #합집합 개수
+    union_num = len(str1_d) + len(str2_d) - intersect_num
+    
+    #정답
+    if union_num != 0:
+        answer = int(intersect_num/union_num * 65536)
+    else:
+        answer = 65536
+    
+    return answer
+```
 
 
 

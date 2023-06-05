@@ -41,19 +41,20 @@
   2.1. 빈 큐에서 데이터를 삭제하는 경우를 따로 처리한다.
 
 Idea:
-- 리스트에서 최솟값을 삭제하기:
- ```
- list = [2, 5, 1, 4]
- list.pop(list.index(min(list)))
- ```
-`list.pop(index)` 보다는 `que.remove(item)` 을 쓰자!
-```
+- 리스트에서 최솟값을 삭제할 때 `list.pop(index)` 보다는 `que.remove(item)` 을 쓰자! :
+ ```python
+# list.pop
+list = [2, 5, 1, 4]
+list.pop(list.index(min(list)))
+
+#que.remove
 from collections import deque
 que = deque([2, 5, 1, 4])
 que.remove(min(que))
 ```
 
 ```python
+# 풀이
 for i in operations:
         if i[0] == 'I':
             que.append(int(i[2:]))

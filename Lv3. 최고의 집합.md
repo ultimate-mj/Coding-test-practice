@@ -21,5 +21,52 @@
 ## 입출력 예
 ![image](https://github.com/ultimate-mj/Coding-test-practice/assets/122213470/62f5dc12-164e-4fee-9fcc-0cdb562e9498)
 
-### 입출력 예 설명
+## My Solution 1. 시간 초과 (정확성 70점, 효율성 0점)
+
+알고리즘:
+ - n=5, s=23인 경우를 생각해보면 [5, 5, 5, 4, 4] 의 곱이 최대임
+ - n=5, s=22인 경우에는 [5, 5, 4, 4, 4] 의 곱이 최대임
+ 
+ $\rightarrow$ a = s를 n으로 나눈 것의 몫, b = s를 n으로 나눈 것의 나머지라 할 때, answer = [rep(a, n-b개), rep(a+1, b개)]
+    
+주의:
+- `np.array()` 의 각 원소 타입은 `numpy.int64`이다
+  + `list(np.array())`로 해도 원소는 여전히 `numpy.int64`로 존재하기 때문에 내부 원소까지 모두 `int`형으로 변환해야 한다!!
+
+Idea:
+- Use `np.repeat`
+
+```python
+def solution(n, s):
+    import numpy as np
+    a = int(s//n)
+    b = int(s%n)
+    if a == 0:
+        answer = [-1]
+        return answer
+    answer = list(int(x) for x in np.repeat([a], n-b))
+    answer += list(int(x) for x in np.repeat([a+1], b))
+    return answer
+```
+
+## My Solution 2.
+
+Idea:
+- Use `repeat`
+  + `from itertools import repeat`
+
+```python
+def solution(n, s):
+    from itertools import repeat
+    a = int(s//n)
+    b = int(s%n)
+    if a == 0:
+        answer = [-1]
+        return answer
+    answer = list(repeat(a, n-b))
+    answer += list(repeat(a+1, b))
+    return answer
+
+```
+
 

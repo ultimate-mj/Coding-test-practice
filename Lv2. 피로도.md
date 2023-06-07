@@ -34,3 +34,61 @@ XX게임에는 피로도 시스템(0 이상의 정수로 표현합니다)이 있
 - 남은 피로도는 50이며, 두 번째 던전을 돌기위해 필요한 "최소 필요 피로도"는 50이므로, 두 번째 던전을 탐험할 수 있습니다. 두 번째 던전의 "소모 피로도"는 40이므로, 던전을 탐험한 후 남은 피로도는 10입니다.
 
 따라서 이 경우 세 던전을 모두 탐험할 수 있으며, 유저가 탐험할 수 있는 최대 던전 수는 3입니다.
+
+## My Solution 1. 19개 중 3개 통과
+
+알고리즘:
+- 던전을 돌 수 있는 **모든** 경우의 수에 대해 몇 개의 던전을 돌 수 있는지 세기
+~~- OR '최소 필요 피로도'는 큰 순서, '소모 피로도'는 작은 순서대로 돌기
+~- OR '소모 피로도'가 작은 순서대로 먼저 sorting 하고 소모 피로도의 합이 현재 피로도를 넘으면 자르기
+  ~+ 자른 걸 '최소 필요 피로도'가 큰 순서대로 sorting
+
+Idea:
+- use `permutations`
+  + `from itertools import permutations`
+
+틀린 이유:
+- `k`의 값이 바뀜
+
+```python
+def solution(k, dungeons):
+    from itertools import permutations
+    ans = 0
+    for i in permutations(dungeons, len(dungeons)):
+        cnt = 0
+        use = 0
+        for j in i:
+            if k >= j[0]:
+                use += j[1]
+                cnt += 1
+            else:
+                break
+    ans = max(ans, cnt)
+    return ans
+```
+
+## My Solution 2. 
+
+Idea:
+- `k` 대신 `now` 변수 사용!
+
+```python
+def solution(k, dungeons):
+    from itertools import permutations
+    
+    ans = 0
+    for i in permutations(dungeons, len(dungeons)):
+        cnt = 0
+        now = k
+        for j in i:
+            if now >= j[0]:
+                cnt += 1
+                now -= j[1]
+            else:
+                break
+        ans = max(ans, cnt)
+
+    return ans
+```
+
+

@@ -27,5 +27,26 @@ n개의 음이 아닌 정수들이 있습니다. 이 정수들을 순서를 바�
 ```
 - 총 2가지 방법이 있으므로, 2를 return 합니다.
 
+## Solution.
+https://daeun-computer-uneasy.tistory.com/69?category=1053494 참고
 
+Idea:
+- use `BFS`
+  + 이진 트리 형식으로 뻗어나갈 수 있는 문제는 `DFS/BFS`로 접근할 수 있음을 염두에 두자!!
+
+```python
+def solution(numbers, target):
+    answer = 0
+    sums = [0]
+    for i in numbers:
+        temp = []
+        for j in sums:
+            temp.append(j + i)  # 더하는 경우
+            temp.append(j - i)  # 빼는 경우
+            sums = temp
+    for k in sums:
+        if k == target:
+            answer += 1
+    return answer
+```
 

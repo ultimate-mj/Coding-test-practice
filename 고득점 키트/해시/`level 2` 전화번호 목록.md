@@ -17,6 +17,9 @@
 
 ![image](https://user-images.githubusercontent.com/122213470/229417784-9edf25cf-e350-4742-9510-42145b4cfe71.png)
 
+## 입출력 예제
+![image](https://github.com/ultimate-mj/Coding-test-practice/assets/122213470/6193184e-b869-4c52-b9d5-8c3106d489d4)
+
 ## My Solution
 
 ```python
@@ -62,4 +65,10 @@ def solution(phone_book):
         j = i
     return True
 ```
+
+## My Solution 2.
+
+
+
+
 

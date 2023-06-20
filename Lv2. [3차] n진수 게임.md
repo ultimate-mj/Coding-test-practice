@@ -36,3 +36,86 @@
 ## 입출력 예시
 ![image](https://github.com/ultimate-mj/Coding-test-practice/assets/122213470/fca8efb5-2435-4ce6-a40a-579e1e18fd93)
 
+## Other's Solution 1.
+https://velog.io/@sem/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4-LEVEL2-n%EC%A7%84%EC%88%98-%EA%B2%8C%EC%9E%84-Python
+
+```python
+#n진수로 바꾸는 함수 만들기
+def convert(num, base):
+    temp = "0123456789ABCDEF"
+    q, r = divmod(num, base)
+
+    if q == 0:
+        return temp[r]
+    else:
+        # q를 base로 변환
+        # 즉, n진수의 다음 자리를 구함
+        return convert(q, base) + temp[r]
+    
+def solution(n, t, m, p):
+    answer = ''
+    test = ''
+
+    # n진수로 바꾼 숫자를 문자열로 나열
+    for i in range(m*t):
+        test += str(convert(i, n))
+
+    # 튜브가 말해야 하는 숫가 t개를 answer에 넣고 사람 수인 m개씩 건너뛰기
+    while len(answer) < t:
+        answer += test[p-1]
+        p += m
+        
+    return answer
+```
+
+## Other's Solution 2.
+
+https://velog.io/@djagmlrhks3/Algorithm-Programmers-3%EC%B0%A8-n%EC%A7%84%EC%88%98-%EA%B2%8C%EC%9E%84-by-Python
+
+```python
+def solution(n, t, m, p):
+    answer = ''
+    length = m * t
+    candidate = '0'
+    num = 0
+    alpha = 'ABCDEF'
+    
+    while len(candidate) < length: #length 길이보다 작을 때 까지 n진법으로 변환!
+        res = ''
+        number = num
+        while True: # 자연수 number를 n진법으로 변환하는 반복문 
+            if number == 0: # 더 이상 나누지 못하면 break
+                break
+            if number % n:
+                if number % n >= 10: # 10~15값이면 alpha와 매핑
+                    res += alpha[(number%n) % 10]
+                else: # 나머지 값을 res에 담는다.
+                    res += str(number % n)
+            else:
+                res += '0'
+            number //= n
+        num += 1
+        candidate += res[::-1] # 역순으로 담았기 때문에 슬라이싱([::-1])을 이용하여 candidate에 담는다.
+    for i in range(p-1, length, m): answer += candidate[i] # 튜브의 순서에 해당하는 숫자를 answer에 담는다!
+    return answer
+```
+
+
+## Useful Concept
+
+1. n진수 -> 10진수 : `int(string, base)`
+2. 10진수 -> 2, 8, 16진수: `bin()`, `oct()`, `hex()`
+3. 10진수 -> n진수
+   ```python
+   def convert(num, base):
+     temp = "0123456789ABCDEF"
+     q, r = divmod(num, base)
+
+     if q == 0:
+        return temp[r]
+     else:
+        # q를 base로 변환
+        # 즉, n진수의 다음 자리를 구함
+        return convert(q, base) + temp[r]
+   ```
+4. `divmod(a, b)`: `a/b`의 몫과 나머지를 tuple 형태로 반환

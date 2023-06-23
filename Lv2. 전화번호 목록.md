@@ -18,6 +18,43 @@
 ## 입출력 예제
 ![image](https://github.com/ultimate-mj/Coding-test-practice/assets/122213470/6193184e-b869-4c52-b9d5-8c3106d489d4)
 
-## My Solution
+## My Solution. 정확성 100점, 효율성 2/4
 
+Idea:
+- 문자열로 이루어진 list는 원소 길이 기준으로 먼저 sorting 됨
 
+```python
+def solution(phone_book):
+    phone_book.sort()  #원소의 길이를 기준으로 sort
+    
+    if len(phone_book) == 1:
+        return True
+    
+    else:
+        for i,x in enumerate(phone_book):  #가장 짧은 원소부터 기준으로
+            for j in range(i+1, len(phone_book)):
+                #if x in phone_book[j]:  #접두사와 같아야 함!!
+                if x in phone_book[j][0:len(x)]:
+                    return False
+                
+    answer = True
+    return answer
+```
+
+## Other's Solution.
+
+Idea:
+- 문자열을 `sort`하면 길이로 정렬된 후 **문자열 기준으로도 정렬됨**
+- use `zip`
+  - ex) `list(zip([1,2,3], (4,5,6), "abcd"))` 의 결과는 `[[1, 4, 'a'], [2, 5, 'b'], [3, 6, 'c']]`
+- use `A.startswith(B)`
+
+```python
+def solution(phone_book):
+    phone_book.sort()  #원소의 길이를 기준으로 sort
+    
+    for p1, p2 in zip(phone_book, phone_book[1:]):
+        if p2.startswith(p1):
+            return False
+    return True
+```
